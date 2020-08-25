@@ -1,0 +1,13 @@
+{
+  "AUTENTICATION":{
+    "USERNAME": "Nombre de Usuario",
+    "EMAIL": "Correo Electronico",
+    "PASSWORD": "Contraseña",
+    "REGISTER_BTN": "Registrarse",
+    "PLACEHOLDERS" : {
+      "USERNAME": "Ingrese su nombre",
+      "EMAIL": "Ingrese su correo electrónico",
+      "PASSWORD": "Ingrese una contraseña"
+    }
+  }
+}
