@@ -3,14 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  stripeId: '2345678',
+  development: true,
   api: 'https://e-workshop-api.herokuapp.com',
-  authApi: 'https://e-workshop-api.herokuapp.com/login',
-  oAuthCredentials: {
-    clientId: 'asdfadfa',
-    secret: 'aadfadsfadfadfadf'
-  }
+  authApi: 'https://e-workshop-api.herokuapp.com/login'
 };
 
 /*

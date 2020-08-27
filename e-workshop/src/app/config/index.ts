@@ -1,11 +1,11 @@
-import { environment } from './../../environments/environment';
+import { environment } from './../../environments/enviroment.dev';
 export const CONFIG = {
-  apiPath: environment.authApi,
-  // apiAuthPath: environment.api,
+  apiPath: environment.api,
+  apiAuthPath: environment.authApi,
   dateTimeFormats: {
     shortDate: 'MM/DD/YY',
     dateTime: 'MM/DD/YYYY hh:mm ss'
   },
   timeoutRequest: 6000,
-  storagePrefix: 'cenfo'
-}
+  storagePrefix: 'e-workshop'
+};

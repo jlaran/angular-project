@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "e-workshop",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -125,7 +125,7 @@
       }
     }
   },
-  "defaultProject": "e-workshop",
+  "defaultProject": "ew",
   "cli": {
     "analytics": false
   }

@@ -32,42 +32,18 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Nombre</th>
-          <th>Edad</th>
-          <th>Pais</th>
-          <th>Acciones</th>
+          <th>ID Number</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Email</th>
         </tr>
       </thead>
         <tbody>
-        <tr>
-          <td>Carlos</td>
-          <td>21</td>
-          <td>Mexico</td>
-          <td>
-            <button class="btn btn-success mr-1">Complete</button>
-            <button class="btn btn-danger mr-1">Delete</button>
-            <button class="btn btn-warning mr-1">Edit</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Alejandro</td>
-          <td>22</td>
-          <td>Portugal</td>
-          <td>
-            <button class="btn btn-success mr-1">Complete</button>
-            <button class="btn btn-danger mr-1">Delete</button>
-            <button class="btn btn-warning mr-1">Edit</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Cesar</td>
-          <td>25</td>
-          <td>España</td>
-          <td>
-            <button class="btn btn-success mr-1">Complete</button>
-            <button class="btn btn-danger mr-1">Delete</button>
-            <button class="btn btn-warning mr-1">Edit</button>
-          </td>
+        <tr *ngFor="let user of users" >
+          <td>{{ user.idNumber }}</td>
+          <td>{{ user.firstName }} {{ user.lastName }}</td>
+          <td>{{ user.phone }}</td>
+          <td>{{ user.email }}</td>
         </tr>
       </tbody>
     </table>

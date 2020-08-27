@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-workshop-dashboard',
+  selector: 'ew-dashboard',
   templateUrl: './workshop-dashboard.component.html',
   styleUrls: ['./workshop-dashboard.component.scss']
 })
