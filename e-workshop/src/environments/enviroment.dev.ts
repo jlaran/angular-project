@@ -4,7 +4,8 @@
 
 export const environment = {
   development: true,
-  api: 'https://e-workshop-api.herokuapp.com',
+  // api: 'https://e-workshop-api.herokuapp.com',
+  api: 'http://localhost:3000',
   authApi: 'https://e-workshop-api.herokuapp.com/login'
 };
 

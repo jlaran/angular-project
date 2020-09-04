@@ -1,1 +1,66 @@
-<p>client-dashboard works!</p>
+<main>
+  <div class="row mt-4">
+    <div class="col">
+      <h4 class="mb-3">My Cars</h4>
+
+      <div *ngIf="clientData">
+       <div class="row" *ngIf="clientData.cars.length <= 0">
+          <div class="col-4">
+            <p>No Cars to show</p>
+          </div>
+        </div>
+
+        <div class="car-cart row" *ngIf="clientData.cars.length > 0">
+          <div class="col-4" *ngFor="let car of clientData.cars">
+            <p><b>Brand:</b> {{ car.brand | titlecase}}</p>
+            <p><b>Model:</b> {{ car.model | titlecase}}</p>
+            <p><b>Color:</b> {{ car.color | titlecase}}</p>
+            <p><b>Plate:</b> {{ car.plate | uppercase}}</p>
+            <p><b>Year:</b> {{ car.year }}</p>
+            <button class="btn btn-primary mt-4 mb-3">Edit car</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col">
+      <h4 class="mb-3">My Quotes</h4>
+    </div>
+  </div>
+
+  <div class="row mt-4">
+    <div class="col">
+      <h4 class="mb-3">My Jobs</h4>
+    </div>
+  </div>
+</main>
+
+
+
+
+<!-- <button class="btn btn-primary" (click)="onNewClientModal()">Nuevo cliente</button>
+
+<div class="row">
+  <div class="col">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID Number</th>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+        <tbody>
+        <tr *ngFor="let client of clients" >
+          <td>{{ client.idNumber }}</td>
+          <td>{{ client.firstName }} {{ client.lastName }}</td>
+          <td>{{ client.phone }}</td>
+          <td>{{ client.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> -->

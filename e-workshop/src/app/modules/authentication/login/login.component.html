@@ -1,8 +1,9 @@
 <h1 class="text-center mt-5 mb-5">E-Workshop App</h1>
 
+<h3 class="text-center mt-5 mb-5">Login</h3>
 <div class="row justify-content-center mt-5">
   <div class="col-10 col-sm-8 col-md-5">
-    <form><!-- #postForm="ngForm" (ngSubmit)="onCreatePost(postForm.value)" -->
+    <form (ngSubmit)="onLogIn(loginForm)" #loginForm="ngForm">
       <div class="form-group">
         <!-- {{ "AUTENTICATION.EMAIL" | translate }}  -->
         <label for="content">Username</label>
@@ -16,7 +17,10 @@
         <input type="password" class="form-control" id="password" required ngModel name="password" placeholder="Please enter your password"/>
       </div>
       <!-- {{ "AUTENTICATION.REGISTER_BTN" | translate }} -->
-      <button class="col-12 mt-4 btn btn-primary" (click)="goToClient()" type="submit">Submit</button> <!-- [disabled]="!postForm.valid" -->
+      <button class="col-12 mt-4 btn btn-primary" type="submit">Submit</button> <!-- [disabled]="!postForm.valid" -->
     </form>
+    <div class="col text-center mt-5">
+      <a href="#" class="link" routerLink="../register">New user? Register here!</a>
+    </div>
   </div>
 </div>

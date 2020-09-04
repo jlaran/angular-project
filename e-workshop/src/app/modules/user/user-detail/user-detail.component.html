@@ -1,0 +1,10 @@
+<button class="btn btn-primary" routerLink="../">Atras</button>
+
+<div class="row">
+  <div class="col" *ngIf="user" >
+    <p>Cedula {{ user.idNumber }}</p>
+    <p>Nombre: {{ user.firstName }} {{ user.lastName }}</p>
+    <p>Telefono: {{ user.phone }}</p>
+    <p>Correo: {{ user.email }}</p>
+  </div>
+</div>

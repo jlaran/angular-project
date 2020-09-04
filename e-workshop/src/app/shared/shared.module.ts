@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BooleanToHumanPipe } from './pipes/boolean-to-human.pipe';
 import { TranslateModule } from '@ngx-translate/core';
 // import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -10,12 +11,14 @@ import { TranslateModule } from '@ngx-translate/core';
   declarations: [BooleanToHumanPipe],
   imports: [
     CommonModule,
-    TranslateModule
+    TranslateModule,
+    FormsModule
     // SweetAlert2Module,
   ],
   exports: [
     CommonModule,
     TranslateModule,
+    FormsModule,
     // SweetAlert2Module,
     BooleanToHumanPipe
   ]

@@ -3,20 +3,8 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="navbar-collapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link 1</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link 2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link 3</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link 4</a>
+          <a class="nav-link" routerLink="../client">Clients</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -27,6 +15,8 @@
   </nav>
 </header>
 
+<button class="btn btn-primary" (click)="onNewUserModal()">Add New User</button>
+
 <div class="row">
   <div class="col">
     <table class="table table-striped">
@@ -36,14 +26,18 @@
           <th>Name</th>
           <th>Phone</th>
           <th>Email</th>
+          <th>Actions</th>
         </tr>
       </thead>
         <tbody>
-        <tr *ngFor="let user of users" >
+        <tr *ngFor="let user of users">
           <td>{{ user.idNumber }}</td>
           <td>{{ user.firstName }} {{ user.lastName }}</td>
           <td>{{ user.phone }}</td>
           <td>{{ user.email }}</td>
+          <td>
+            <button class="btn btn-primary" [routerLink]="user._id">ver trabajos</button>
+          </td>
         </tr>
       </tbody>
     </table>

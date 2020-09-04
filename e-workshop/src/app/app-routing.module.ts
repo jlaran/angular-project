@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { LoggedGuard } from './core/guards/logged.guard';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
+    canActivate: [LoggedGuard],
     loadChildren: (): Promise<any> =>
       import('./modules/authentication/authentication.module').then(
         (module) => module.AuthenticationModule
@@ -11,6 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'user',
+    canLoad: [AuthGuard],
     loadChildren: (): Promise<any> =>
       import('./modules/user/user.module').then(
         (module) => module.UserModule
@@ -18,6 +22,15 @@ const routes: Routes = [
   },
   {
     path: 'client',
+    canLoad: [AuthGuard],
+    loadChildren: (): Promise<any> =>
+      import('./modules/client/client.module').then(
+        (module) => module.ClientModule
+      ),
+  },
+  {
+    path: 'client/dashboard',
+    canLoad: [AuthGuard],
     loadChildren: (): Promise<any> =>
       import('./modules/client/client.module').then(
         (module) => module.ClientModule

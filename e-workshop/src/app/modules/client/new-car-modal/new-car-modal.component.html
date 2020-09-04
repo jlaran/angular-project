@@ -1,0 +1,36 @@
+<div id="row">
+  <div class="col">
+    <div class="modal-header">
+      <h4 class="modal-title">Add new car</h4>
+      <button type="button" class="close" aria-label="Close" (click)="onCloseModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmit(newCarForm)" #newCarForm="ngForm">
+        <div class="form-group">
+          <label for="">Brand:</label>
+          <input type="text" placeholder="Brand" id="brand" name="brand" class="form-control" required ngModel>
+        </div>
+        <div class="form-group">
+          <label for="firstname">Model:</label>
+          <input type="text" placeholder="Model" id="model" name="model" class="form-control" required ngModel>
+        </div>
+        <div class="form-group">
+          <label for="lastname">Color:</label>
+          <input type="text" placeholder="Color" id="color" name="color" class="form-control" required ngModel>
+        </div>
+        <div class="form-group">
+          <label for="phone">Plate:</label>
+          <input type="text" placeholder="Plate" id="plate" name="plate" class="form-control" required ngModel>
+        </div>
+        <div class="form-group">
+          <label for="address">Year:</label>
+          <input type="text" placeholder="Year" id="year" name="year" class="form-control" required ngModel>
+        </div>
+
+        <button class="btn btn-primary col-12 mt-4" type="submit">Add new car</button>
+      </form>
+    </div>
+  </div>
+</div>

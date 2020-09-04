@@ -1,14 +1,16 @@
-import { Job } from './job.mode';
-import { Quote } from './quote.model';
 import { Car } from './car.model';
 
 export class Client {
-  public id: number;
-  public name: string;
-  public address: string;
+  public _id: string;
+  public idNumber: number;
+  public firstName: string;
+  public lastName: string;
+  public phone: number;
   public email: string;
-  public birthday?: number;
-  public cars?: Car[];
-  public quotes?: Quote;
-  public jobs?: Job;
+  public address: string;
+  public cars: Car[];
+
+  constructor(client?: Partial<Client>) {
+    Object.assign(this, client);
+  }
 }
