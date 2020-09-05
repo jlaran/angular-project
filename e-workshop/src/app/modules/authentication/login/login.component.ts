@@ -1,3 +1,5 @@
+import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
+import { EventsHubService } from './../../../core/services/events-hub/events-hub.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from './../../../core/services/authentication/authentication.service';
 import { Credentials } from './../../../shared/models/credentials.model';
@@ -17,28 +19,38 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private eventsHubService: EventsHubService,
+    private localStorageService: LocalStorageService
   ) { }
 
   ngOnInit(): void {
   }
 
   onLogIn(loginForm: NgForm): void {
-
     this.credentials = loginForm.value;
-
-    if (loginForm.value.email !== '' && loginForm.value.password !== ''){
-      this.authenticationService
-        .login(this.credentials)
-        .then(() => {
-          this.router.navigateByUrl('/client/dashboard');
-        })
-        .catch((error) => {
-          this.toastrService.error(error.error.text);
-          // console.log(error);
-        });
+    if (this.credentials.email === 'admin@workshop.com' && this.credentials.password === 'admin') {
+      this.eventsHubService.setAdminLoggedIn(true);
+      this.localStorageService.set('authData', {
+        admin: true,
+        token: 'abc'
+      });
+      this.router.navigateByUrl('/user');
     } else {
-      this.toastrService.error('Please enter your email and password');
+      console.log('NOOOOOOOOOOOO entrar');
+      if (loginForm.value.email !== '' && loginForm.value.password !== ''){
+        this.authenticationService
+          .login(this.credentials)
+          .then(() => {
+            this.router.navigateByUrl('/client/dashboard');
+          })
+          .catch((error) => {
+            this.toastrService.error(error.error.text);
+            // console.log(error);
+          });
+      } else {
+        this.toastrService.error('Please enter your email and password');
+      }
     }
   }
 

@@ -25,47 +25,55 @@ export class AuthenticationService {
     private dataservice: DataService
   ) {
     const authData = this.localStorageService.get('authData', null);
-    if (authData) {
+    if (!authData.admin) {
+      console.log(authData);
       this.token = authData.token;
       this.loggedUser = authData.loggedUser;
       this.eventsHubService.setLoggedIn(true);
+    } else {
+      this.eventsHubService.setAdminLoggedIn(true);
+      this.token = authData.token;
     }
   }
 
   public login(credentials): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.authService.login(credentials).subscribe(
-        (result) => {
-          this.token = result.token;
-          const userId = result.userId;
+    if (credentials.email === 'admin@workshop.com' && credentials.password === 'admin') {
+      this.eventsHubService.setAdminLoggedIn(true);
+      this.localStorageService.set('authData', {
+        admin: true
+      });
+      this.router.navigateByUrl('/user');
+    } else {
+      return new Promise((resolve, reject) => {
+        this.authService.login(credentials).subscribe(
+          (result) => {
+            this.token = result.token;
+            const userId = result.userId;
 
-          this.localStorageService.set('authData', {
-            token: this.token,
-            id: userId
-          });
+            this.localStorageService.set('authData', {
+              token: this.token,
+              id: userId
+            });
 
-          this.clientService.getClientAllInfo(userId).subscribe(
-            (client) => {
-              this.loggedUser = client;
-              this.eventsHubService.setLoggedIn(true);
-              this.dataservice.setData(client)
-              // this.localStorageService.set('authData', {
-              //   token: this.token,
-              //   loggedUser: this.loggedUser,
-              // });
+            this.clientService.getClientAllInfo(userId).subscribe(
+              (client) => {
+                this.loggedUser = client;
+                this.eventsHubService.setLoggedIn(true);
+                this.dataservice.setData(client);
 
-              resolve(result);
-            },
-            () => {
-              reject({ message: 'user does not exists' });
-            }
-          );
-        },
-        (error) => {
-          reject(error);
-        }
-      );
-    });
+                resolve(result);
+              },
+              () => {
+                reject({ message: 'user does not exists' });
+              }
+            );
+          },
+          (error) => {
+            reject(error);
+          }
+        );
+      });
+    }
   }
 
   public addClient(client): Promise<any> {
@@ -77,19 +85,13 @@ export class AuthenticationService {
 
           this.localStorageService.set('authData', {
             token: this.token,
-            loggedUser: userId
+            id: userId
           });
 
           this.clientService.getClientAllInfo(userId).subscribe(
             (clientResult) => {
               this.loggedUser = clientResult;
               this.eventsHubService.setLoggedIn(true);
-
-              this.localStorageService.set('authData', {
-                token: this.token,
-                loggedUser: clientResult
-              });
-
               resolve(result);
             },
             () => {
@@ -118,11 +120,16 @@ export class AuthenticationService {
     return this.eventsHubService.loggedIn$.getValue();
   }
 
+  public isAdminLoggedIn(): boolean {
+    return this.eventsHubService.adminloggedIn$.getValue();
+  }
+
   public logout(): void {
     // API call for logout if exist then clean the localstorage
     this.authService.logout();
     this.localStorageService.deleteAll();
     this.eventsHubService.setLoggedIn(false);
+    this.eventsHubService.setAdminLoggedIn(false);
     this.router.navigate(['/']);
     this.toastrService.success('User logged out');
   }

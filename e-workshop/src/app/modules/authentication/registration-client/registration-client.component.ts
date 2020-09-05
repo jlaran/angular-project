@@ -24,14 +24,27 @@ export class RegistrationClientComponent implements OnInit {
   }
 
   public onSubmit(signUpForm: NgForm): void {
-    this.newClient = signUpForm.value;
-
-    this.authenticationService.addClient(this.newClient)
-      .then(() => {
-        this.router.navigateByUrl('/client');
-      })
-      .catch((error) => {
-        this.toastrService.error(error.error.text);
-      });
+    if(
+      (signUpForm.value.idNumber !== '' || signUpForm.value.firstName !== '' ||
+      signUpForm.value.lastName !== '' || signUpForm.value.address !== '' ||
+      signUpForm.value.email !== '' || signUpForm.value.phone !== '' ||
+      signUpForm.value.password !== '' || signUpForm.value.confirmationPassword !== '')
+    ){
+      if (signUpForm.value.password === signUpForm.value.confirmationPassword) {
+        this.newClient = signUpForm.value;
+        this.authenticationService.addClient(this.newClient)
+          .then(() => {
+            this.router.navigateByUrl('/client');
+          })
+          .catch((error) => {
+            // this.toastrService.error(error);
+            console.log(error);
+          });
+      } else {
+        this.toastrService.error('Password doesn\'t match');
+      }
+    } else {
+      this.toastrService.error('Please fill the form');
+    }
   }
 }

@@ -5,22 +5,16 @@ import { AuthenticationService } from '../services/authentication/authentication
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanLoad {
+export class AuthAdminGuard implements CanLoad {
   constructor(
     private readonly authenticationService: AuthenticationService,
     private readonly router: Router
   ) {}
 
   public canLoad(route: Route): boolean {
-    if (this.authenticationService.isLoggedIn()) {
-      this.router.navigate(['/client']);
-    }
     if (!this.authenticationService.isAdminLoggedIn()) {
-      this.router.navigate(['/user']);
-    }
-    if (!this.authenticationService.isLoggedIn()) {
       this.router.navigate(['/login']);
     }
-    return this.authenticationService.isLoggedIn();
+    return this.authenticationService.isAdminLoggedIn();
   }
 }

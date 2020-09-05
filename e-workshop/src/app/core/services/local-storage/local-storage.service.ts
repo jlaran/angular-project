@@ -16,7 +16,7 @@ export class LocalStorageService {
     localStorage.setItem(`${this.storagePrefix}-${name}`, JSON.stringify(elem));
   }
 
-  public get(name: string, defaultValue: any): any {
+  public get(name: string, defaultValue?: any): any {
     const item = localStorage.getItem(`${this.storagePrefix}-${name}`);
     if (!item) {
       return defaultValue;

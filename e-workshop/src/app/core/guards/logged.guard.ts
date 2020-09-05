@@ -7,13 +7,19 @@ import { AuthenticationService } from '../services/authentication/authentication
   providedIn: 'root'
 })
 export class LoggedGuard implements CanActivate {
-  constructor(private readonly authenticationService: AuthenticationService, private readonly router: Router) {}
+  constructor(
+    private readonly authenticationService: AuthenticationService,
+    private readonly router: Router
+  ) {}
 
   public canActivate(route: ActivatedRouteSnapshot): boolean | UrlTree {
     if (this.authenticationService.isLoggedIn()) {
       return this.router.createUrlTree(['/', 'client']);
     }
 
+    if (this.authenticationService.isAdminLoggedIn()) {
+      return this.router.createUrlTree(['/', 'user']);
+    }
     return true;
   }
 

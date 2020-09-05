@@ -5,18 +5,16 @@ import { Subscription } from 'rxjs';
 import { DataService } from '../../../core/data-service/data.service';
 import { ClientServiceService } from '../../../core/data-service/clients/client-service.service';
 import { LocalStorageService } from '../../../core/services/local-storage/local-storage.service';
-import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'e-workshop-client-dashboard',
   templateUrl: './client-dashboard.component.html',
   styleUrls: ['./client-dashboard.component.scss']
 })
-export class ClientDashboardComponent implements OnInit, OnDestroy, AfterViewInit {
+export class ClientDashboardComponent implements OnInit, OnDestroy {
   public clientData: Client;
-
-  subscription: Subscription;
+  private id = this.local.get('authData').id;
+  private subscription: Subscription;
 
   constructor(
     private readonly authenticationService: AuthenticationService,
@@ -28,23 +26,18 @@ export class ClientDashboardComponent implements OnInit, OnDestroy, AfterViewIni
   ngOnInit(): void {
     // this.clientData = this.authenticationService.getLoggedUser();
     this.subscription = this.dataservice.data.subscribe((data: any) => {
-      if (typeof this.clientData != "undefined") {
-        this.clientData = data
+      if (typeof this.clientData !== 'undefined') {
+        this.clientData = data;
       }
-    })
+    });
 
-
-    this.subscription = this.client.getClientAllInfo(this.local.get("authData", "id").id).subscribe((data: any) => {
-      this.clientData = data
-    })
-
-
+    this.subscription = this.client.getClientAllInfo(this.id).subscribe((data: any) => {
+      this.clientData = data;
+    });
+    // console.log(this.clientData);
   }
 
-  ngAfterViewInit() {
-  }
-
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.subscription.unsubscribe()
   }
 

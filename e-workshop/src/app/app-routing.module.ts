@@ -1,3 +1,4 @@
+import { AuthAdminGuard } from './core/guards/authAdmin.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { LoggedGuard } from './core/guards/logged.guard';
@@ -14,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    canLoad: [AuthGuard],
+    canLoad: [AuthAdminGuard],
     loadChildren: (): Promise<any> =>
       import('./modules/user/user.module').then(
         (module) => module.UserModule

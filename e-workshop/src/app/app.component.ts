@@ -17,19 +17,19 @@ export class AppComponent {
     translate.setDefaultLang('es');
   }
 
-  onCreatePost(user: {name: string, email: string, password: string}): void {
-    // console.log(postData);
-    this.http.post(`${this.apiPath}/user/register`, user).subscribe(
-      res => {
-        console.log(res);
-    });
-  }
+  // onCreatePost(user: {name: string, email: string, password: string}): void {
+  //   // console.log(postData);
+  //   this.http.post(`${this.apiPath}/user/register`, user).subscribe(
+  //     res => {
+  //       console.log(res);
+  //   });
+  // }
 
-  onGetToken(user: {name: string, email: string, password: string}): void {
-    // console.log(postData);
-    this.http.post(`${this.apiPath}/user/login`, user).subscribe(
-      res => {
-        console.log(res);
-    });
-  }
+  // onGetToken(user: {name: string, email: string, password: string}): void {
+  //   // console.log(postData);
+  //   this.http.post(`${this.apiPath}/user/login`, user).subscribe(
+  //     res => {
+  //       console.log(res);
+  //   });
+  // }
 }
