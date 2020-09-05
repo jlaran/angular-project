@@ -4,10 +4,10 @@ import { BehaviorSubject } from "rxjs";
 @Injectable()
 export class DataService {
   dataObservable = new BehaviorSubject<any>([]);
-  data = this.dataObservable.asObservable()
+  data = this.dataObservable.asObservable();
 
-  setData(data: any) {
+  setData(data: any): void {
     // console.log(data)
-    this.dataObservable.next(data)
+    this.dataObservable.next(data);
   }
 }

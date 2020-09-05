@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
   onLogIn(loginForm: NgForm): void {
     this.credentials = loginForm.value;
     if (this.credentials.email === 'admin@workshop.com' && this.credentials.password === 'admin') {
+      console.log('Admin');
       this.eventsHubService.setAdminLoggedIn(true);
       this.localStorageService.set('authData', {
         admin: true,
@@ -37,7 +38,7 @@ export class LoginComponent implements OnInit {
       });
       this.router.navigateByUrl('/user');
     } else {
-      console.log('NOOOOOOOOOOOO entrar');
+      console.log('Cliente');
       if (loginForm.value.email !== '' && loginForm.value.password !== ''){
         this.authenticationService
           .login(this.credentials)

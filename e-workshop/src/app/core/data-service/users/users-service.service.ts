@@ -13,6 +13,12 @@ export class UsersServiceService {
 
   constructor(private http: HttpClient) { }
 
+  public getClients(): Observable<any> {
+    return this.http
+      .get(`${this.apiPath}/clients`)
+      .pipe(timeout(CONFIG.timeoutRequest));
+  }
+
   // Get All Users
   public getUsers(): Observable<any> {
     return this.http

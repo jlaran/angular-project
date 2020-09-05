@@ -11,7 +11,7 @@
         </div>
 
         <div class="car-cart row" *ngIf="clientData.cars.length > 0">
-          <div class="col-4" *ngFor="let car of clientData.cars">
+          <div class="col-4 mb-4" *ngFor="let car of clientData.cars">
             <p><b>Brand:</b> {{ car.brand | titlecase}}</p>
             <p><b>Model:</b> {{ car.model | titlecase}}</p>
             <p><b>Color:</b> {{ car.color | titlecase}}</p>
@@ -36,31 +36,3 @@
     </div>
   </div>
 </main>
-
-
-
-
-<!-- <button class="btn btn-primary" (click)="onNewClientModal()">Nuevo cliente</button> -->
-
-<!-- <div class="row">
-  <div class="col">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>ID Number</th>
-          <th>Name</th>
-          <th>Phone</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let client of clientData">
-          <td>{{ client.idNumber }}</td>
-          <td>{{ client.firstName }} {{ client.lastName }}</td>
-          <td>{{ client.phone }}</td>
-          <td>{{ client.email }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div> -->

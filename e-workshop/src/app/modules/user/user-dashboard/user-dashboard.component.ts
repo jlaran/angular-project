@@ -52,4 +52,8 @@ export class UserDashboardComponent implements OnInit {
       }
     );
   }
+
+  public logOut(): void {
+    this.authenticationService.logout();
+  }
 }

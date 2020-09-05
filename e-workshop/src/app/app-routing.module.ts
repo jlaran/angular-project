@@ -30,14 +30,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'client/dashboard',
-    canLoad: [AuthGuard],
-    loadChildren: (): Promise<any> =>
-      import('./modules/client/client.module').then(
-        (module) => module.ClientModule
-      ),
-  },
-  {
     path: '**',
     pathMatch: 'full',
     redirectTo: ''

@@ -13,14 +13,11 @@ export class AuthGuard implements CanLoad {
 
   public canLoad(route: Route): boolean {
     if (this.authenticationService.isLoggedIn()) {
-      this.router.navigate(['/client']);
+      return this.authenticationService.isLoggedIn();
     }
-    if (!this.authenticationService.isAdminLoggedIn()) {
+    if (this.authenticationService.isAdminLoggedIn()) {
       this.router.navigate(['/user']);
+      return false;
     }
-    if (!this.authenticationService.isLoggedIn()) {
-      this.router.navigate(['/login']);
-    }
-    return this.authenticationService.isLoggedIn();
   }
 }

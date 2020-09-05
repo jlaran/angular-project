@@ -24,7 +24,6 @@ export class ClientDashboardComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    // this.clientData = this.authenticationService.getLoggedUser();
     this.subscription = this.dataservice.data.subscribe((data: any) => {
       if (typeof this.clientData !== 'undefined') {
         this.clientData = data;
@@ -34,7 +33,6 @@ export class ClientDashboardComponent implements OnInit, OnDestroy {
     this.subscription = this.client.getClientAllInfo(this.id).subscribe((data: any) => {
       this.clientData = data;
     });
-    // console.log(this.clientData);
   }
 
   ngOnDestroy(): void {

@@ -1,3 +1,4 @@
+import { AuthenticationService } from 'src/app/core/services/authentication/authentication.service';
 import { User } from './../../../shared/models/user.model';
 import { UsersServiceService } from './../../../core/data-service/users/users-service.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +14,8 @@ export class UserDetailComponent implements OnInit {
 
   constructor(
     private userService: UsersServiceService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
@@ -27,5 +29,9 @@ export class UserDetailComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  public logOut(): void {
+    this.authenticationService.logout();
   }
 }

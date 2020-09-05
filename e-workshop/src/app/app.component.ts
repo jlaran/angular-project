@@ -1,5 +1,7 @@
+import { EventsHubService } from './core/services/events-hub/events-hub.service';
+import { LocalStorageService } from 'src/app/core/services/local-storage/local-storage.service';
 import { CONFIG } from './config/index';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -9,12 +11,30 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.scss']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   private apiPath = `${CONFIG.apiPath}`;
 
-  constructor(private translate: TranslateService, private http: HttpClient){
+  constructor(
+    private translate: TranslateService,
+    private http: HttpClient,
+    private eventService: EventsHubService,
+    private local: LocalStorageService
+
+  ){
     translate.setDefaultLang('es');
+  }
+
+  ngOnInit(): void {
+    const authData = this.local.get('authData');
+    if (authData) {
+      if (authData.id) {
+        this.eventService.setLoggedIn(true);
+      }
+      if (authData.admin) {
+        this.eventService.setAdminLoggedIn(true);
+      }
+    }
   }
 
   // onCreatePost(user: {name: string, email: string, password: string}): void {
