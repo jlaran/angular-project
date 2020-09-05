@@ -31,16 +31,16 @@ export class NewCarModalComponent implements OnInit {
   }
 
   public onSubmit(newCarForm: NgForm): void {
-    if (newCarForm.valid){
+    if (newCarForm.valid) {
       this.clientService.addCar(newCarForm.value)
         .then(() => {
           this.toastrService.success('Car added!');
-          this.carCreated.emit(true);
           this.closeModal();
           this.router.navigateByUrl('/client/dashboard');
         })
         .catch((error) => {
-          this.toastrService.error(error.error.details[0].message);
+          console.log(error)
+          // this.toastrService.error(error.error.details[0].message);
           return;
         });
     } else {

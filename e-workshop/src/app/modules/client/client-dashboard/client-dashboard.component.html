@@ -4,7 +4,7 @@
       <h4 class="mb-3">My Cars</h4>
 
       <div *ngIf="clientData">
-       <div class="row" *ngIf="clientData.cars.length <= 0">
+        <div class="row" *ngIf="clientData.cars.length <= 0">
           <div class="col-4">
             <p>No Cars to show</p>
           </div>
@@ -40,9 +40,9 @@
 
 
 
-<!-- <button class="btn btn-primary" (click)="onNewClientModal()">Nuevo cliente</button>
+<!-- <button class="btn btn-primary" (click)="onNewClientModal()">Nuevo cliente</button> -->
 
-<div class="row">
+<!-- <div class="row">
   <div class="col">
     <table class="table table-striped">
       <thead>
@@ -53,8 +53,8 @@
           <th>Email</th>
         </tr>
       </thead>
-        <tbody>
-        <tr *ngFor="let client of clients" >
+      <tbody>
+        <tr *ngFor="let client of clientData">
           <td>{{ client.idNumber }}</td>
           <td>{{ client.firstName }} {{ client.lastName }}</td>
           <td>{{ client.phone }}</td>

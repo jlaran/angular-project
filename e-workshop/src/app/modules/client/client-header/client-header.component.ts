@@ -36,14 +36,14 @@ export class ClientHeaderComponent implements OnInit {
   }
 
   private getClient(): void {
-    this.clientService.getClientAllInfo(this.clientData._id).subscribe(
-      (result) => {
-        this.clientData = result;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    // this.clientService.getClientAllInfo(this.clientData.id).subscribe(
+    //   (result) => {
+    //     this.clientData = result;
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
   }
 
   public logOut(): void {

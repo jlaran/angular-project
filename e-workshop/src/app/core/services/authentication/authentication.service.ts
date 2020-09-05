@@ -6,6 +6,7 @@ import { AuthService } from './../../data-service/auth/auth.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
+import { DataService } from '../../data-service/data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class AuthenticationService {
     private readonly eventsHubService: EventsHubService,
     private readonly localStorageService: LocalStorageService,
     private readonly toastrService: ToastrService,
-    private router: Router
+    private router: Router,
+    private dataservice: DataService
   ) {
     const authData = this.localStorageService.get('authData', null);
     if (authData) {
@@ -39,18 +41,18 @@ export class AuthenticationService {
 
           this.localStorageService.set('authData', {
             token: this.token,
-            loggedUser: userId
+            id: userId
           });
 
           this.clientService.getClientAllInfo(userId).subscribe(
             (client) => {
               this.loggedUser = client;
               this.eventsHubService.setLoggedIn(true);
-
-              this.localStorageService.set('authData', {
-                token: this.token,
-                loggedUser: this.loggedUser,
-              });
+              this.dataservice.setData(client)
+              // this.localStorageService.set('authData', {
+              //   token: this.token,
+              //   loggedUser: this.loggedUser,
+              // });
 
               resolve(result);
             },

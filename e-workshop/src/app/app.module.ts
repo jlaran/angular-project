@@ -11,6 +11,7 @@ import { BooleanToHumanPipe } from './shared/pipes/boolean-to-human.pipe';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
+import { DataService } from "../app/core/data-service/data.service";
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
       }
     })
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
