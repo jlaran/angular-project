@@ -214,7 +214,7 @@ This project showcases proficiency in:
 
 ## Author
 
-**Juan Carlos Laran**
+**Juan Carlos Lara**
 
 [![GitHub](https://img.shields.io/badge/GitHub-jlaran-181717?style=flat-square&logo=github)](https://github.com/jlaran)
 
